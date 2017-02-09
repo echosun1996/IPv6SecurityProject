@@ -7,7 +7,9 @@ import java.net.Socket;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-
+/*
+ * 13140端口启动tcp服务的核心。
+ */
 @SuppressWarnings("serial")
 public class Connect extends HttpServlet {
 	public void thread_switch(int i) {

@@ -1,5 +1,8 @@
 package com.echosun;
 
+/*
+ * 这是Servlet启动的线程。
+ */
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
