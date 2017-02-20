@@ -3,8 +3,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
-<jsp:useBean id="user" class="com.echosun.User" scope="page" />
-<jsp:useBean id="login" class="com.echosun.Login" scope="page" />
+<jsp:useBean id="user" class="com.echosun.login.User" scope="request" />
+<jsp:useBean id="login" class="com.echosun.login.Login_check" scope="request" />
 <jsp:setProperty name="user" property="*" />
 <%
 //String pass=user.getPassword();
@@ -14,13 +14,22 @@
 //if(session.getAttribute("check")!=null)
 //	check_sum_right=(String)session.getAttribute("check");
 //out.println("<p>checksum------>|"+check_sum+"|----+++---|"+check_sum_right+"</p>");
-if(!((String)session.getAttribute(Constants.KAPTCHA_SESSION_KEY)).equals(request.getParameter("check")))
+try{
+if(session.getAttribute("loginuser")!=null)
 {
-	out.print("<h2>验证码错误！</h2>");
+	response.sendRedirect("login_success.jsp");
 }
-else if(!login.UserLogin(user,(String)session.getAttribute("check")))//传入用户名/密文 验证通过
+else if(request.getParameter("check")==null)
 {
-	out.print("<h2>用户名或密码错误！</h2>");
+	out.print("<script>alert('非法操作！');window.location.href='index.jsp';</script>");  
+}
+else if(!((String)session.getAttribute(Constants.KAPTCHA_SESSION_KEY)).equals(request.getParameter("checknum")))
+{
+	out.print("<script>alert('验证码错误！');window.location.href='index.jsp';</script>");  
+}
+else if(!login.UserLogin(user,(String)request.getParameter("check")))//传入用户名/密文 验证通过
+{
+	out.print("<script>alert('用户名或密码错误！');window.location.href='index.jsp';</script>");  
 }
 else
 {
@@ -52,6 +61,15 @@ else
 	}
 	session.setAttribute("loginuser", user.getUsername());
 	//out.println("true");
-	request.getRequestDispatcher("login_success.jsp").forward(request, response);
+	//正常跳转
+	response.sendRedirect("login_success.jsp");
+	//内部转发跳转
+	//request.getRequestDispatcher("login_success.jsp").forward(request, response);
+}
+}
+catch(Exception e)
+{
+	e.printStackTrace();
+	out.print("<script>alert('数据库连接异常！请联系管理员');window.location.href='/WebServer/index.jsp';</script>"); 
 }
 %>

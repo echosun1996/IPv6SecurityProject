@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../Files/echo.css" />
+<link href="../Files/style_log.css" rel="stylesheet" type="text/css" />
+<title>标题</title>
 </head>
-<body>
-
+<body class="site">
+<div><h2 style="text-align: center;">安全控制台</h2></div>
 </body>
 </html>

@@ -3,13 +3,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="./Files/echo.css" />
-<link href="./Files/style_log.css" rel="stylesheet" type="text/css" />
-<title>框架标题</title>
+<link rel="stylesheet" type="text/css" href="/WebServer/Files/echo.css" />
+<link href="/WebServer/Files/style_log.css" rel="stylesheet" type="text/css" />
+<title>404ERROR</title>
 </head>
 <body class="site">
 	<div class="info" style="text-align: center">
-		<b>欢迎进入IPV6安全控制台</b>
+		<b>地址未找到</b>
 	</div>
 </body>
 </html>

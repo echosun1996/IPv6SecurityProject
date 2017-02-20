@@ -1,4 +1,4 @@
-package com.echosun;
+package com.echosun.socket;
 
 /*
  * 这是Servlet启动的线程。

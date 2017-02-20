@@ -3,6 +3,7 @@
 body{font:10px/40% Arial,Helvetica,Verdana;color:#5a5a5a; margin:0; background:#FFF;}
 body.site{background: url(site_bgx.gif) no-repeat center center fixed;background-size: cover;min-height: 100vh;box-sizing: border-box;margin: 0;padding-top: calc(50vh - 6em);font: 150%/1.6 Baskerville, Palatino, serif;   } 
 body.login{ background:url(login_bgx.gif);}
+body.console{background: url(site_bgx.gif) no-repeat center center fixed;background-size: cover;min-height: 100vh;box-sizing: border-box;margin: 0;padding-top: calc(22vh - 6em);font: 150%/1.6 Baskerville, Palatino, serif;   } 
 table,td{font:12px/180% Arial, "宋体",Helvetica, sans-serif,Verdana; color:#58595b;}
 table{border-collapse:collapse; border-spacing:0; empty-cells:show; }
 th, td { border-collapse:collapse; }

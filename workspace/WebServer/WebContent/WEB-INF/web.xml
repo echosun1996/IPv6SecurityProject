@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	id="WebApp_ID" version="3.0">
-	<display-name>WebServer</display-name> 
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+	<display-name>WebServer</display-name>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404ERROR.jsp</location>
+	</error-page>
+
+
+	<filter>
+		<filter-name>MyFilter</filter-name>
+		<filter-class>com.echosun.Filter.MyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>MyFilter</filter-name>
+		<url-pattern>/login_success.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>MyFilter</filter-name>
+		<url-pattern>/index.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>MyFilter</filter-name>
+		<url-pattern>/Frame/*</url-pattern>
+	</filter-mapping>
+
+
+
+
 	<servlet>
 		<servlet-name>Kaptcha</servlet-name>
 		<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
@@ -31,7 +54,7 @@
 
 	<servlet>
 		<servlet-name>Connect</servlet-name>
-		<servlet-class>com.echosun.Connect</servlet-class>
+		<servlet-class>com.echosun.socket.Connect</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Connect</servlet-name>
@@ -45,4 +68,24 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+		<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.js</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.css</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.png</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.gif</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.jpg</url-pattern>
+	</servlet-mapping>
 </web-app>

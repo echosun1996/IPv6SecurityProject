@@ -1,4 +1,4 @@
-package com.echosun;
+package com.echosun.login;
 
 import java.util.Random;
 

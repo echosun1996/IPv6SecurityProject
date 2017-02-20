@@ -1,4 +1,4 @@
-package com.echosun;
+package com.echosun.login;
 
 public class User {
 	private String username;

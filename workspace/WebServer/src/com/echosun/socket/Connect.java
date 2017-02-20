@@ -1,4 +1,4 @@
-package com.echosun;
+package com.echosun.socket;
 
 import java.io.IOException;
 import java.io.PrintWriter;
