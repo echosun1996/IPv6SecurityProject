@@ -4,7 +4,7 @@ package com.echosun.database;
  *
 CREATE TABLE `System`(`key` varchar(100) PRIMARY KEY, `value` VARCHAR(100));
  */
-public class System_Model {
+public class DBSystem_Model {
 	private String key;
 	private String value;
 	public String getKey() {

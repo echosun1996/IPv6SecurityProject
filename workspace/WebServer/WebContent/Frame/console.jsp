@@ -1,15 +1,15 @@
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-<%@page import="com.echosun.database.System_Model"%>
+<%@page import="com.echosun.database.DBSystem_Model"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="json" uri="http://www.atg.com/taglibs/json"%>
-<jsp:useBean id="system" class="com.echosun.database.System" scope="page" />
+<jsp:useBean id="system" class="com.echosun.database.DBSystem" scope="page" />
 <%
 	try
 		{
 		String Switch=null;
-		List<System_Model> ress=system.System_Sel();
-		for(System_Model res:ress)
+		List<DBSystem_Model> ress=system.System_Sel();
+		for(DBSystem_Model res:ress)
 		{
 		if("Switch".equals(res.getKey()))
 		{
@@ -19,7 +19,7 @@
 		}
 		if(Switch==null)
 		{
-		System_Model tem=new System_Model();
+		DBSystem_Model tem=new DBSystem_Model();
 		tem.setKey("Switch");
 		tem.setValue("close");
 		system.System_Add(tem);

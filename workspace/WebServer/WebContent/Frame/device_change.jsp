@@ -4,12 +4,14 @@
 <%
 try{
 request.setCharacterEncoding("UTF-8");
+response.setCharacterEncoding("UTF-8");
 String name =request.getParameter("name");
 String uid =request.getParameter("uid");
 handware.Hardware_CName(uid,name);
 }
 catch(Exception e)
 {
+	e.printStackTrace();
 	out.print("<script>alert('数据库连接异常！请联系管理员');window.location.href='main.jsp';</script>"); 
 }
 %>

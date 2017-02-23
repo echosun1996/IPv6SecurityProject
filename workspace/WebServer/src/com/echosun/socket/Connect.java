@@ -7,6 +7,7 @@ import java.net.Socket;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+
 /*
  * 13140端口启动tcp服务的核心。
  */
@@ -31,8 +32,8 @@ public class Connect extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html");
 		response.setHeader("content-type", "text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
@@ -41,13 +42,15 @@ public class Connect extends HttpServlet {
 		out.close();
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String status = request.getParameter("status");
-		if (sta == 0 && status.equals("1"))
+		if (sta == 0 && status.equals("1")) {
 			server = new ServerSocket(13140);
-		else if (sta == 1 && status.equals("0"))
+			System.out.println("start");
+		} else if (sta == 1 && status.equals("0")) {
 			server.close();
+			System.out.println("close");
+		}
 		thread = new Thread() {
 			public void run() {
 				try {

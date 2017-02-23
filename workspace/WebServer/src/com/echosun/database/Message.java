@@ -2,7 +2,9 @@ package com.echosun.database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.mysql.jdbc.Connection;
@@ -19,6 +21,21 @@ public class Message {
 		pre.execute();
 	}
 
+	public void Message_Init(String UID, String msg) throws Exception {
+		Date now = new Date(); 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String df = dateFormat.format( now ); 
+		
+		DBConnection connection = new DBConnection();
+		Connection con = connection.getConnection();
+		String sql = "INSERT INTO `Message`(`UID` ,`time`,`message`)VALUES (?,?,?)";
+		PreparedStatement pre = con.prepareStatement(sql);
+		pre.setString(1, UID);
+		pre.setString(2, df);
+		pre.setString(3, msg);
+		pre.execute();
+	}
+	
 	public void Message_CMessage(String UID, String newmsg) throws Exception {
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();

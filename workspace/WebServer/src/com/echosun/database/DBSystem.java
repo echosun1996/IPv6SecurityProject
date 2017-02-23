@@ -8,8 +8,8 @@ import java.util.List;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
-public class System {
-	public void System_Add(System_Model input) throws Exception {
+public class DBSystem {
+	public void System_Add(DBSystem_Model input) throws Exception {
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
 		String sql = "insert into `System`(`key`, `value`) values(?,?)";
@@ -38,17 +38,17 @@ public class System {
 		pre.execute();
 	}
 
-	public List<System_Model> System_Sel() throws Exception {
+	public List<DBSystem_Model> System_Sel() throws Exception {
 
 		String sql = "select * from System;";
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
-		List<System_Model> ress = new ArrayList<System_Model>();
-		System_Model res = null;
+		List<DBSystem_Model> ress = new ArrayList<DBSystem_Model>();
+		DBSystem_Model res = null;
 		Statement st = (Statement) con.createStatement();
 		ResultSet sqlres = st.executeQuery(sql);
 		while (sqlres.next()) {
-			res = new System_Model();
+			res = new DBSystem_Model();
 			res.setKey(sqlres.getString("key"));
 			res.setValue(sqlres.getString("value"));
 			ress.add(res);

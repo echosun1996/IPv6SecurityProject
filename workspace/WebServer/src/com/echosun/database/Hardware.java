@@ -10,22 +10,85 @@ import com.mysql.jdbc.Statement;
 
 public class Hardware {
 
-	public void Hardware_Del(String input) throws Exception {
+	public void Hardware_Del(String uid) throws Exception {
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
-		String sql = "delete from `Information` where (`username`=?)";
+		String sql = "delete from `Information` where (`uid`=?)";
 		PreparedStatement pre = con.prepareStatement(sql);
-		pre.setString(1, input);
+		pre.setString(1, uid);
 		pre.execute();
 	}
 
-	public void Hardware_Upd(String key, String value) throws Exception {
+	public int Hardware_Init(Hardware_Model in) 
+	{
+		String sql = "INSERT INTO `Information` (`UID` ,`name`,`category`,`status`,`address` ,`check`)VALUES (?,?,?,?,?,?)";
+		DBConnection connection = new DBConnection();
+		Connection con;
+		try {
+			con = connection.getConnection();
+			PreparedStatement pre = con.prepareStatement(sql);
+			pre.setString(1, in.getUID());
+			pre.setString(2, in.getName());
+			pre.setInt(3, in.getCategory());
+			pre.setInt(4, in.getStatus());
+			pre.setString(5, in.getAddress());
+			pre.setString(6, in.getCheck());
+			pre.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+		
+		return 1;
+		
+	}
+	
+	public boolean Hardware_check(String uid,String check) throws Exception {
+		
+		String sql = "SELECT `check` FROM `Information` WHERE `uid`=? ";
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
-		String sql = "UPDATE `Information` SET `password`=? WHERE (`username`=?)";
 		PreparedStatement pre = con.prepareStatement(sql);
-		pre.setString(1, value);
-		pre.setString(2, key);
+		pre.setString(1, uid);
+		ResultSet sqlres = pre.executeQuery(); 
+		String res=null;
+		while (sqlres.next()) {
+			res=sqlres.getString("check");
+			break;
+		}
+		if(res.equals(check))return true;
+		return false;
+	}
+	
+	public int Hardware_GetUID(String category) throws Exception {
+		String res=null;
+		String sql = "SELECT uid FROM Information WHERE category=? ORDER BY uid DESC;";
+		DBConnection connection = new DBConnection();
+		Connection con = connection.getConnection();
+		PreparedStatement pre = con.prepareStatement(sql);
+		pre.setString(1, category);
+		ResultSet sqlres = pre.executeQuery(); 
+		
+		while (sqlres.next()) {
+			res=sqlres.getString("UID");
+			break;
+		}
+		if(res==null)
+		{
+			res=category+"000";
+		}
+		
+		return Integer.parseInt(res)+1;
+	}
+	
+	
+	public void Hardware_CSta(String UID, String status) throws Exception {
+		DBConnection connection = new DBConnection();
+		Connection con = connection.getConnection();
+		String sql = "UPDATE `Information` SET `status`=? WHERE (`UID`=?)";
+		PreparedStatement pre = con.prepareStatement(sql);
+		pre.setString(1, status);
+		pre.setString(2, UID);
 		pre.execute();
 	}
 
@@ -40,7 +103,6 @@ public class Hardware {
 	}
 
 	public List<Hardware_Model> Hardware_Sel() throws Exception {
-
 		String sql = "select * from Information;";
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
@@ -56,7 +118,6 @@ public class Hardware {
 			res.setStatus(sqlres.getInt("status"));
 			ress.add(res);
 		}
-
 		return ress;
 	}
 
