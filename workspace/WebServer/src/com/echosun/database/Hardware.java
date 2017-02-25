@@ -56,8 +56,9 @@ public class Hardware {
 			res=sqlres.getString("check");
 			break;
 		}
-		if(res.equals(check))return true;
-		return false;
+		if(res==null) return false;
+		else if(res.equals(check))return true;
+		else return false;
 	}
 	
 	public int Hardware_GetUID(String category) throws Exception {
@@ -81,6 +82,24 @@ public class Hardware {
 		return Integer.parseInt(res)+1;
 	}
 	
+	public String Hardware_GetSta(String uid) throws Exception {
+		String res=null;
+		String sql = "SELECT status FROM Information WHERE UID=?;";
+		DBConnection connection = new DBConnection();
+		Connection con = connection.getConnection();
+		PreparedStatement pre = con.prepareStatement(sql);
+		pre.setString(1, uid);
+		ResultSet sqlres = pre.executeQuery(); 
+		
+		while (sqlres.next()) {
+			res=sqlres.getString("status");
+			break;
+		}
+
+		
+		return res;
+	}
+	
 	
 	public void Hardware_CSta(String UID, String status) throws Exception {
 		DBConnection connection = new DBConnection();
@@ -101,7 +120,29 @@ public class Hardware {
 		pre.setString(2, UID);
 		pre.execute();
 	}
-
+	
+	public void Hardware_SetNormal() throws Exception {
+		DBConnection connection = new DBConnection();
+		Connection con = connection.getConnection();
+		String sql = "UPDATE `Information` SET `status`=2 WHERE `status`=3;";
+		PreparedStatement pre = con.prepareStatement(sql);
+		pre.execute();
+	}
+	
+	
+	public int Hardware_Sum() throws Exception {
+		String sql = "select count(*)sum from Information where `status`=1 OR `status`=2 OR `status`=3;";
+		DBConnection connection = new DBConnection();
+		Connection con = connection.getConnection();
+		Statement st = (Statement) con.createStatement();
+		ResultSet sqlres = st.executeQuery(sql);
+		while (sqlres.next()) {
+			return (sqlres.getInt("sum"));
+			
+		}
+		return 0;
+	}
+	
 	public List<Hardware_Model> Hardware_Sel() throws Exception {
 		String sql = "select * from Information;";
 		DBConnection connection = new DBConnection();
@@ -116,6 +157,22 @@ public class Hardware {
 			res.setName(sqlres.getString("name"));
 			res.setCategory(sqlres.getInt("category"));
 			res.setStatus(sqlres.getInt("status"));
+			ress.add(res);
+		}
+		return ress;
+	}
+	public List<Hardware_Model> Hardware_Warn() throws Exception {
+		String sql = "select `UID`,`name` from Information where `status`=3;";
+		DBConnection connection = new DBConnection();
+		Connection con = connection.getConnection();
+		List<Hardware_Model> ress = new ArrayList<Hardware_Model>();
+		Hardware_Model res = null;
+		Statement st = (Statement) con.createStatement();
+		ResultSet sqlres = st.executeQuery(sql);
+		while (sqlres.next()) {
+			res = new Hardware_Model();
+			res.setUID(sqlres.getString("UID"));
+			res.setName(sqlres.getString("name"));
 			ress.add(res);
 		}
 		return ress;

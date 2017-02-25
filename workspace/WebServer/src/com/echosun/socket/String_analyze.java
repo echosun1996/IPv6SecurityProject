@@ -76,24 +76,33 @@ public class String_analyze {
 		String msg = resStringx[3];
 		String check = resStringx[4];
 
-//		System.out.println("back:" + back);
-//		System.out.println("uid:" + uid);
-//		System.out.println("category:" + category);
-//		System.out.println("status:" + status);
-//		System.out.println("msg:" + msg);
-//		System.out.println("check:" + check);
+		// System.out.println("back:" + back);
+		// System.out.println("uid:" + uid);
+		// System.out.println("category:" + category);
+		// System.out.println("status:" + status);
+		// System.out.println("msg:" + msg);
+		// System.out.println("check:" + check);
 
 		Hardware hard_db = new Hardware();
-
+		//初始化
 		if (status == 1 && category > 0) {
 			returnString = hard_init(category + "");
 			return ok;
-		} else if (status == 2 || status == 3) {
+		}
+		//发送消息
+		else if (status == 2 || status == 3) {
 			if (hard_db.Hardware_check(resStringx[1], check)) {
 				Message ms_db = new Message();
-				ms_db.Message_Init(uid + "", msg);
+				ms_db.Message_Init(uid + "", msg, status);
+
+				Hardware hardware = new Hardware();
+				if (status == 2 && !hardware.Hardware_GetSta(uid + "").equals("3"))
+					hardware.Hardware_CSta(uid + "", status + "");
+				if (status == 3)
+					hardware.Hardware_CSta(uid + "", status + "");
 				if (back == 1)
 					returnString = "update";
+				return ok;
 			} else {
 				if (back == 1)
 					returnString = "error";

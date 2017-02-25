@@ -18,16 +18,18 @@
 				<th>设备编号</th>
 				<th>消息发送时间</th>
 				<th>消息内容</th>
+				<th>状态</th>
 			</tr>
 			<%
 			try{
-				List<Message_Model> res=infos.Message_Sel();
+				List<Message_Model> res=infos.Message_SelALL();
 				for(Message_Model i : res){
 			%>
 			<tr>
 				<td><%=i.getUID()%></td>
 				<td><%=i.getTime()%></td>
 				<td><%=i.getMessage()%></td>
+				<td><%=i.getStatus()%></td>
 			</tr>
 			<%
 				}

@@ -22,7 +22,10 @@ random.RandomString();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" type="image/x-icon"  href="/WebServer/Files/favicon.ico" >
+<link rel="icon" href="/WebServer/Files/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/WebServer/Files/favicon.ico" type="image/x-icon" />
+<link rel="bookmark" href="/WebServer/Files/favicon.ico" type="image/x-icon" />
+
 <title>欢迎登陆</title>
 <link rel="stylesheet" type="text/css" href="/WebServer/Files/style.css" />
 <link href="/WebServer/Files/style_log.css" rel="stylesheet" type="text/css" />

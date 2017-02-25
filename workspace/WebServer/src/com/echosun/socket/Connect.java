@@ -38,11 +38,12 @@ public class Connect extends HttpServlet {
 		response.setHeader("content-type", "text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		out.print("<p>Get请求无效</p>");
+		out.print("{\"sta\": 0,\"Switch\": -1}");
 		out.close();
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");	
 		String status = request.getParameter("status");
 		if (sta == 0 && status.equals("1")) {
 			server = new ServerSocket(13140);
@@ -68,13 +69,14 @@ public class Connect extends HttpServlet {
 		};
 		response.setCharacterEncoding("utf-8");
 
+
+		
 		PrintWriter out = response.getWriter();
-		out.print("<h2>status:" + status + "</h2>");
 		if (status.equals("1")) {
-			out.print("<h2>" + "start!" + "</h2>");
+			out.print("{\"sta\": 1,\"Switch\": 1}");
 			thread_switch(1);
 		} else if (status.equals("0")) {
-			out.print("<h2>" + "end!" + "</h2>");
+			out.print("{\"sta\": 1,\"Switch\": 0}");
 			thread_switch(0);
 		}
 		out.close();

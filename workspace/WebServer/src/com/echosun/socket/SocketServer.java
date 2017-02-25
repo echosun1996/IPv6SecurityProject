@@ -8,9 +8,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import sun.launcher.resources.launcher;
-import sun.security.x509.IPAddressName;
-
 class SocketServer extends Thread {
 	private Socket socket;
 
