@@ -25,8 +25,8 @@
 	}, false);
 	
 	
-	var mess = new EventSource("/WebServer/SSESum");  
-	mess.addEventListener("message", function(e2) {
+	var SSESum = new EventSource("/WebServer/SSESum");  
+	SSESum.addEventListener("message", function(e2) {
 		document.getElementById("sum").innerHTML = e2.data; 
 	}, false);
 </script>
@@ -73,6 +73,7 @@
 			} else {
 				close();
 			}
+			
 		});
 
 

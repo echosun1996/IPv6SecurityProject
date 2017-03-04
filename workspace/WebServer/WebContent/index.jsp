@@ -1,8 +1,8 @@
 <%@page import="org.apache.catalina.deploy.LoginConfig"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:useBean id="random" class="com.echosun.login.RandomAlphaNumericGenerator" scope="request" />
+<jsp:useBean id="random" class="com.echosun.login.RandomGenerator" scope="request" />
 <%
-random.RandomString();
+		random.RandomString();
 
 		String cookie_username="Your name";
 		Cookie[] cookies=request.getCookies();
@@ -35,7 +35,7 @@ random.RandomString();
 		var randomnumber = Math.random();
 		var checkimg = document.getElementById("check_img");
 		var check = document.getElementById("check");
-		checkimg.src = "/WebServer/rondaocode.jpg?" + randomnumber;
+		checkimg.src = "/WebServer/authImage?" + randomnumber;
 		check.value="<%=random.getRandomString()%>";
 	}
 	function sub() {
@@ -78,7 +78,7 @@ random.RandomString();
 					<h2>密码</h2>
 					<label> <input type="password" name="password" id="userpwd" class="txt_input txt_input2" onmouseover="" onmouseout="" onfocus="this.style.border='1px solid #cad2db';if (value =='******'){value ='';}" onblur="if (value ==''){value='******';}" value="******" /></label>
 					<h2>验证码</h2>
-					<label> <input type="text" id="checknum" name="checknum" class="check" onmouseover="" onmouseout="" onfocus="if (value =='Check number'){value ='';}" onblur="this.style.border='1px solid #cad2db'; if (value ==''){value='Check number';}" value="Check number" /></label> <img id="check_img" src="rondaocode.jpg" width="110px" height="38px" style="vertical-align: middle;" onclick="refresh()" />
+					<label> <input type="text" id="checknum" name="checknum" class="check" onmouseover="" onmouseout="" onfocus="if (value =='Check number'){value ='';}" onblur="this.style.border='1px solid #cad2db'; if (value ==''){value='Check number';}" value="Check number" /></label> <img id="check_img" src="authImage" width="110px" height="38px" style="vertical-align: middle;" onclick="refresh()" />
 					<input type="hidden" id="check" name="check">
 					<div class="rem_sub">
 						<div class="rem_sub_l">

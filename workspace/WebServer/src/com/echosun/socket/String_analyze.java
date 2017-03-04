@@ -1,8 +1,14 @@
 package com.echosun.socket;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.echosun.database.ACSInformation;
+import com.echosun.database.ACSInformation_Model;
 import com.echosun.database.Hardware;
 import com.echosun.database.Hardware_Model;
 import com.echosun.database.Message;
+import com.echosun.login.RandomGenerator;
 
 public class String_analyze {
 	private String cmd;
@@ -31,7 +37,9 @@ public class String_analyze {
 	private String hard_init(String category_tem) throws Exception {
 		Hardware test = new Hardware();
 		String uid = test.Hardware_GetUID(category_tem) + "";
-		String check = "ksbb0";// 5
+		RandomGenerator alphaNumericGenerator = new RandomGenerator();
+		alphaNumericGenerator.RandomCheckPasswd();
+		String check = alphaNumericGenerator.getRandomString();// 5
 
 		Hardware_Model in = new Hardware_Model();
 		in.setUID(uid);
@@ -100,6 +108,34 @@ public class String_analyze {
 					hardware.Hardware_CSta(uid + "", status + "");
 				if (status == 3)
 					hardware.Hardware_CSta(uid + "", status + "");
+				
+				if(back==1&&category==4&&status==2)//ACS match
+				{
+					String[] temp = msg.split("@");
+					if(temp[1]!=null)
+					{
+						String id=temp[1];
+						System.out.println("id"+id);
+						ACSInformation acsInformation= new ACSInformation();
+						System.out.println("Searching in the database!"+acsInformation.ACSInformation_GetSta(id));
+						returnString=acsInformation.ACSInformation_GetSta(id)+"\r\n";
+						return ok;
+					}
+				}
+				else if(back==1&&category==4&&status==3)//ACS update
+				{
+					ACSInformation_Model tem=new ACSInformation_Model();
+					tem.setName("New ID card！");
+					tem.setID(msg);
+					tem.setStatus(0);
+					Date now = new Date(); 
+					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+					String df = dateFormat.format( now ); 
+					tem.setTime(df);
+					ACSInformation acsInformation= new ACSInformation();
+					acsInformation.ACSInformation_Init(tem);
+				}
+				
 				if (back == 1)
 					returnString = "update";
 				return ok;

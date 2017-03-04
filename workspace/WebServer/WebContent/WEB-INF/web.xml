@@ -27,27 +27,12 @@
 		<url-pattern>/Frame/*</url-pattern>
 	</filter-mapping>
 	<servlet>
-		<servlet-name>Kaptcha</servlet-name>
-		<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
-		<init-param>
-			<description>边框</description>
-			<param-name>kaptcha.border</param-name>
-			<param-value>no</param-value>
-		</init-param>
-		<init-param>
-			<description>长度</description>
-			<param-name>kaptcha.textproducer.char.length</param-name>
-			<param-value>4</param-value>
-		</init-param>
-		<init-param>
-			<description>出现字符</description>
-			<param-name>kaptcha.textproducer.char.string</param-name>
-			<param-value>0123456789</param-value>
-		</init-param>
+		<servlet-name>AuthImage</servlet-name>
+		<servlet-class>com.echosun.login.AuthImage</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Kaptcha</servlet-name>
-		<url-pattern>/rondaocode.jpg</url-pattern>
+		<servlet-name>AuthImage</servlet-name>
+		<url-pattern>/authImage</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

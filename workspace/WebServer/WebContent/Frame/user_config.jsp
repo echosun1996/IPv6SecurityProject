@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:useBean id="random" class="com.echosun.login.RandomAlphaNumericGenerator" scope="page" />
+<jsp:useBean id="random" class="com.echosun.login.RandomGenerator" scope="page" />
 <%
 	random.RandomString();
 	session.setAttribute("check2", random.getRandomString());

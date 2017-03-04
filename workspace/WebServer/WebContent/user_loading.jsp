@@ -1,4 +1,4 @@
-<%@page import="com.google.code.kaptcha.Constants"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -14,6 +14,7 @@
 //if(session.getAttribute("check")!=null)
 //	check_sum_right=(String)session.getAttribute("check");
 //out.println("<p>checksum------>|"+check_sum+"|----+++---|"+check_sum_right+"</p>");
+out.println(session.getAttribute("checkPic"));
 try{
 if(session.getAttribute("loginuser")!=null)
 {
@@ -23,8 +24,9 @@ else if(request.getParameter("check")==null)
 {
 	out.print("<script>alert('非法操作！');window.location.href='index.jsp';</script>");  
 }
-else if(!((String)session.getAttribute(Constants.KAPTCHA_SESSION_KEY)).equals(request.getParameter("checknum")))
+else if(!((String)session.getAttribute("checkPic")).equals(request.getParameter("checknum")))
 {
+	out.print((String)session.getAttribute("checkPic"));
 	out.print("<script>alert('验证码错误！');window.location.href='index.jsp';</script>");  
 }
 else if(!login.UserLogin(user,(String)request.getParameter("check")))//传入用户名/密文 验证通过

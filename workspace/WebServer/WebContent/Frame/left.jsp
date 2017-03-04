@@ -23,12 +23,15 @@ if (obj == null) {
 	<br>
 	<a href="device_config.jsp" target="main" id="device_config">设备设置</a>
 	<br>
-	<a href="device_message.jsp" target="main" id="device_config">设备消息</a>
+	<a href="device_message.jsp" target="main" id="device_message">设备消息</a>
 	<br>
-	<a href="user_config.jsp" target="main" id="device_message">用户设置</a>
+	<a href="ACSInformation.jsp" target="main" id="ACSInformation">门禁设置</a>
 	<br>
-	<a href="/WebServer/loginout.jsp" id="device_message">用户登出</a>
+	<a href="user_config.jsp" target="main" id="user_config">用户设置</a>
 	<br>
+	<a href="/WebServer/loginout.jsp" id="loginout">用户登出</a>
+	<br>
+
 </div>
 </body>
 </html>
