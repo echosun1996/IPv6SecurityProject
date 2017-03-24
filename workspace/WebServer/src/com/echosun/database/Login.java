@@ -1,5 +1,11 @@
 package com.echosun.database;
 
+/*
+ * Login_Add(Login_Model input) 新建用户 传入用户模型 无返回
+ * Login_Del(String username) 删除用户 传入用户名 无返回
+ * Login_Upd(String password, String username) 修改用户密码 传入用户名和密码 无返回
+ * Login_Sel() 查询所有用户 无传入 返回所有用户
+ */
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -20,22 +26,22 @@ public class Login {
 		pre.execute();
 	}
 
-	public void Login_Del(String input) throws Exception {
+	public void Login_Del(String username) throws Exception {
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
 		String sql = "delete from `LoginUser` where (`username`=?)";
 		PreparedStatement pre = con.prepareStatement(sql);
-		pre.setString(1, input);
+		pre.setString(1, username);
 		pre.execute();
 	}
 
-	public void Login_Upd(String key, String value) throws Exception {
+	public void Login_Upd(String password, String username) throws Exception {
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
 		String sql = "UPDATE `LoginUser` SET `password`=? WHERE (`username`=?)";
 		PreparedStatement pre = con.prepareStatement(sql);
-		pre.setString(1, value);
-		pre.setString(2, key);
+		pre.setString(1, username);
+		pre.setString(2, password);
 		pre.execute();
 	}
 

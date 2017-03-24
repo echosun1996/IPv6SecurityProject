@@ -14,7 +14,7 @@
 //if(session.getAttribute("check")!=null)
 //	check_sum_right=(String)session.getAttribute("check");
 //out.println("<p>checksum------>|"+check_sum+"|----+++---|"+check_sum_right+"</p>");
-out.println(session.getAttribute("checkPic"));
+//out.println(session.getAttribute("checkPic"));
 try{
 if(session.getAttribute("loginuser")!=null)
 {
@@ -24,9 +24,9 @@ else if(request.getParameter("check")==null)
 {
 	out.print("<script>alert('非法操作！');window.location.href='index.jsp';</script>");  
 }
-else if(!((String)session.getAttribute("checkPic")).equals(request.getParameter("checknum")))
+else if(!((String)session.getAttribute("checkPic")).equals(request.getParameter("checknum").toLowerCase()))
 {
-	out.print((String)session.getAttribute("checkPic"));
+	//out.print((String)session.getAttribute("checkPic"));
 	out.print("<script>alert('验证码错误！');window.location.href='index.jsp';</script>");  
 }
 else if(!login.UserLogin(user,(String)request.getParameter("check")))//传入用户名/密文 验证通过
@@ -43,7 +43,7 @@ else
 		Cookie usernameCookie=new Cookie("username",username);//添加user cookie字段
 		usernameCookie.setMaxAge(864000);
 		response.addCookie(usernameCookie);
-		out.println("click");
+		//out.println("click");
 	}
 	else
 	{

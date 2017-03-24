@@ -4,37 +4,51 @@
 <%@page import="com.echosun.database.*"%>
 <jsp:useBean id="infos" class="com.echosun.database.Hardware"
 	scope="page" />
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="/WebServer/Files/echo.css" />
-<link href="/WebServer/Files/style_log.css" rel="stylesheet" type="text/css" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<title>启动服务</title>
+<link rel="icon" href="/WebServer/Files/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/WebServer/Files/favicon.ico"
+	type="image/x-icon" />
+<link rel="bookmark" href="/WebServer/Files/favicon.ico"
+	type="image/x-icon" />
+
+
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
 <script>
-//SSE
-	var warn = new EventSource("/WebServer/SSEWarning");  
+	//SSE
+	var warn = new EventSource("/WebServer/SSEWarning");
 	warn.addEventListener("message", function(e1) {
 		document.getElementById("warning").innerHTML = e1.data;
 	}, false);
 
-	var mess = new EventSource("/WebServer/SSEMessage");  
+	var mess = new EventSource("/WebServer/SSEMessage");
 	mess.addEventListener("message", function(e2) {
-		document.getElementById("message").innerHTML = e2.data; 
+		document.getElementById("message").innerHTML = e2.data;
 	}, false);
-	
-	
-	var SSESum = new EventSource("/WebServer/SSESum");  
+
+	var SSESum = new EventSource("/WebServer/SSESum");
 	SSESum.addEventListener("message", function(e2) {
-		document.getElementById("sum").innerHTML = e2.data; 
+		document.getElementById("sum").innerHTML = e2.data;
 	}, false);
 </script>
 <script>
 	window.status = 0;
 	$(document).ready(function() {
 		getstatus();
-//clear_error
+		//clear_error
 		$("#clear_error").click(function() {
 			$.post("/WebServer/Frame/ask.jsp", {
 				"ask" : "clear_error",
@@ -45,11 +59,9 @@
 					window.location.href = 'main.jsp?error';
 				}
 				window.status = obj.Switch;
-				
+
 			});
 		});
-
-
 
 		$("#clear_message").click(function() {
 			$.post("/WebServer/Frame/ask.jsp", {
@@ -61,21 +73,20 @@
 					window.location.href = 'main.jsp?error';
 				}
 				window.status = obj.Switch;
-				
+
 			});
 		});
-		
+
 		$("#flip").click(function() {
-			setTimeout('$("#flip").disabled=true',5000);
-			$("#flip").disabled=false;
+			setTimeout('$("#flip").disabled=true', 5000);
+			$("#flip").disabled = false;
 			if (window.status == 0) {
 				open();
 			} else {
 				close();
 			}
-			
-		});
 
+		});
 
 	});
 	function getstatus() {
@@ -152,49 +163,119 @@
 		});
 
 	}
-
-
 </script>
-<title>框架标题</title>
-
 </head>
-<body class="console">
-	<div class="info" style="text-align: center">
-		<div id="flip">
-			<b>启动服务</b>
-		</div>
-
-		<div id="panel" style="display: none; width: 552px;">
-
-
-			<div id="warning"
-				style="float: left; background-color: #9966CC; width: 400px; height: 300px;">
-				<b>入侵警告</b>
-			</div>
-
-
-			<div id="clear_error"
-				style="float: right; background-color: #FF9933; width: 150px; height: 100px;">
-				<p>←警告清空</p>
-			</div>
-
-			<div
-				style="float: right; background-color: #9966CC; width: 150px; height: 100px;">
-				<p>传感器个数</p>
-				<b id="sum">0</b>
-			</div>
-
-			<div id="clear_message"
-				style="float: right; background-color: #FF9933; width: 150px; height: 100px;">
-				<p>↓消息清空</p>
-			</div>
-
-			<div id="message"
-				style="float: left; background-color: #9966CC; margin-top: 3px; width: 552px; height: 400px; border-top: 20px;">
-				<b>系统消息</b>
-			</div>
-
-		</div>
+<body>
+	<div class="container-fluid">
+		<h1 class="text-center">安全控制台</h1>
 	</div>
+	<hr
+		style="height: 3px; border: none; border-top: 3px groove deepskyblue;" />
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="span2  col-xs-12 col-sm-3 col-md-2">
+				<ul class="nav nav-pills nav-stacked demo-nav side-bar">
+					<li class="active"><a href="main.jsp" target="main"><span
+							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;
+							面板首页</a></li>
+					<li><a href="device_config.jsp" target="main"
+						id="device_config"><span class="glyphicon glyphicon-cog"
+							aria-hidden="true"></span>&nbsp; 设备设置</a></li>
+					<li><a href="device_message.jsp" target="main"
+						id="device_message"><span class="glyphicon glyphicon-envelope"
+							aria-hidden="true"></span>&nbsp; 设备消息 </a></li>
+					<li><a href="ACSInformation.jsp" target="main"
+						id="ACSInformation"><span class="glyphicon glyphicon-wrench"
+							aria-hidden="true"></span>&nbsp; 门禁设置</a></li>
+
+					<li><a href="user_config.jsp" target="main" id="user_config"><span
+							class="glyphicon glyphicon-user"></span>&nbsp; 用户设置</a></li>
+					<li><a href="/WebServer/loginout.jsp" id="loginout"><span
+							class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;
+							用户登出</a></li>
+				</ul>
+			</div>
+
+			<div class="col-xs-12 col-sm-9 col-md-10 info">
+
+				<button type="button" class="btn btn-default btn-lg btn-block"
+					id="flip">
+					<h3>启动服务</h3>
+				</button>
+
+				<div id="panel">
+
+
+					<div class="table-responsive">
+						<h4 class="text-center">设备警报</h4>
+
+						<div style="overflow-x: auto; overflow-y: auto; height: 200px;"
+							class="table-responsive" id="warning"></div>
+						<button type="button" id="clear_error"
+							class="btn btn-primary pull-right">警告清空</button>
+					</div>
+
+
+					<div class="">
+						<p>
+							传感器个数: <b id="sum">0</b>
+						</p>
+
+					</div>
+
+
+
+
+
+					<div class="table-responsive">
+						<h4 class="text-center">未读消息</h4>
+
+						<div style="overflow-x: auto; overflow-y: auto; height: 200px;"
+							class="table-responsive" id="message">
+							<table class="table table-condensed">
+
+								<thead>
+									<tr>
+										<th>设备编号</th>
+										<th>设备备注</th>
+										<th>设备类别</th>
+										<th>设备状态</th>
+									</tr>
+								</thead>
+								<tbody>
+
+								</tbody>
+							</table>
+						</div>
+						<button type="button" id="clear_message"
+							class="btn btn-primary pull-right">消息清空</button>
+
+
+
+
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+
+		<hr class="divider">
+		<footer>
+			<p class="pull-right">
+				<a href="#top">回到顶部</a>
+			</p>
+			<p>Copyright 2017 IPv6SecurityProject. All Rights Reserved.</p>
+		</footer>
+
+
+
+	</div>
+	<script src="../js/jquery-1.11.1.min.js"></script>
+
+	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

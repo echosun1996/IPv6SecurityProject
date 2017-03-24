@@ -25,7 +25,6 @@ public class SSESum extends HttpServlet {
         try {
 			writer.write("data: " + message.Hardware_Sum() + "\n\n");
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}  
         try {   //设置间隔时间  

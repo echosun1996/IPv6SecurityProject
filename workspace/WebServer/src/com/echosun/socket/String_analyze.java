@@ -1,5 +1,8 @@
 package com.echosun.socket;
 
+/*
+ * 设备发送内容分析类
+ */
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -92,12 +95,12 @@ public class String_analyze {
 		// System.out.println("check:" + check);
 
 		Hardware hard_db = new Hardware();
-		//初始化
+		// 初始化
 		if (status == 1 && category > 0) {
 			returnString = hard_init(category + "");
 			return ok;
 		}
-		//发送消息
+		// 发送消息
 		else if (status == 2 || status == 3) {
 			if (hard_db.Hardware_check(resStringx[1], check)) {
 				Message ms_db = new Message();
@@ -108,34 +111,33 @@ public class String_analyze {
 					hardware.Hardware_CSta(uid + "", status + "");
 				if (status == 3)
 					hardware.Hardware_CSta(uid + "", status + "");
-				
-				if(back==1&&category==4&&status==2)//ACS match
+
+				if (back == 1 && category == 4 && status == 2)// ACS match
 				{
 					String[] temp = msg.split("@");
-					if(temp[1]!=null)
-					{
-						String id=temp[1];
-						System.out.println("id"+id);
-						ACSInformation acsInformation= new ACSInformation();
-						System.out.println("Searching in the database!"+acsInformation.ACSInformation_GetSta(id));
-						returnString=acsInformation.ACSInformation_GetSta(id)+"\r\n";
+					if (temp[1] != null) {
+						String id = temp[1];
+						System.out.println("id" + id);
+						ACSInformation acsInformation = new ACSInformation();
+						System.out.println("Searching in the database!" + acsInformation.ACSInformation_GetSta(id));
+						returnString = acsInformation.ACSInformation_GetSta(id) + "\r\n";
 						return ok;
 					}
-				}
-				else if(back==1&&category==4&&status==3)//ACS update
+				} else if (back == 1 && category == 4 && status == 3)// ACS
+																		// update
 				{
-					ACSInformation_Model tem=new ACSInformation_Model();
+					ACSInformation_Model tem = new ACSInformation_Model();
 					tem.setName("New ID card！");
 					tem.setID(msg);
 					tem.setStatus(0);
-					Date now = new Date(); 
+					Date now = new Date();
 					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-					String df = dateFormat.format( now ); 
+					String df = dateFormat.format(now);
 					tem.setTime(df);
-					ACSInformation acsInformation= new ACSInformation();
+					ACSInformation acsInformation = new ACSInformation();
 					acsInformation.ACSInformation_Init(tem);
 				}
-				
+
 				if (back == 1)
 					returnString = "update";
 				return ok;

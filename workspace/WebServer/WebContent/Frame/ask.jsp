@@ -96,13 +96,12 @@
 			out.print("{\"sta\": 0,\"ret\": -1}");
 			out.print("error");
 			//out.print("<script>alert('数据库连接异常！请联系管理员');window.location.href='main.jsp?error';</script>");
-		}		
+		}
 	}
-	
-	
+
 	else if (ask.equals("clear_error")) {
 		try {
-			Hardware hw=new Hardware();
+			Hardware hw = new Hardware();
 			hw.Hardware_SetNormal();
 			out.print("{\"sta\": 1,\"ret\": " + "1" + "}");
 			//out.print(Switch);
@@ -114,10 +113,10 @@
 			//out.print("<script>alert('数据库连接异常！请联系管理员');window.location.href='main.jsp?error';</script>");
 		}
 	}
-	
+
 	else if (ask.equals("clear_message")) {
 		try {
-			Message ms=new Message();
+			Message ms = new Message();
 			ms.Message_SetNormal();
 			out.print("{\"sta\": 1,\"ret\": " + "1" + "}");
 			//out.print(Switch);
@@ -129,5 +128,4 @@
 			//out.print("<script>alert('数据库连接异常！请联系管理员');window.location.href='main.jsp?error';</script>");
 		}
 	}
-	
 %>

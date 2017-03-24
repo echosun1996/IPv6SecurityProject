@@ -1,5 +1,18 @@
 package com.echosun.database;
 
+/*
+ * 消息功能类
+ * Hardware_Del(String uid) 删除对应设备 传入uid 无返回
+ * Hardware_Init(Hardware_Model in) 初始化设备 传入设备模型 成功返回1，否则0
+ * Hardware_check(String uid, String check) 核对设备密码 传入uid和密码 返回真假
+ * Hardware_GetUID(String category) 查询对应类别的下一个uid 传入类别 返回可初始化的uid(从N001开始,N为类别)
+ * Hardware_GetSta(String uid) 查询设备状态 传入uid 返回设备状态
+ * Hardware_CSta(String UID, String status) 修改设备状态 传入uid和状态 无返回
+ * Hardware_CName(String UID, String name) 修改设备名字 传入uid和名字 无返回
+ * Hardware_SetNormal() 设置所有设备为正常 无传入 无返回
+ * Hardware_Sum() 查询设备总数 无传入 返回设备总数
+ * Hardware_Sel() 查询所有设备 无传入 返回所有设备
+ */
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -19,8 +32,7 @@ public class Hardware {
 		pre.execute();
 	}
 
-	public int Hardware_Init(Hardware_Model in) 
-	{
+	public int Hardware_Init(Hardware_Model in) {
 		String sql = "INSERT INTO `Information` (`UID` ,`name`,`category`,`status`,`address` ,`check`)VALUES (?,?,?,?,?,?)";
 		DBConnection connection = new DBConnection();
 		Connection con;
@@ -38,69 +50,69 @@ public class Hardware {
 			e.printStackTrace();
 			return 0;
 		}
-		
+
 		return 1;
-		
+
 	}
-	
-	public boolean Hardware_check(String uid,String check) throws Exception {
-		
+
+	public boolean Hardware_check(String uid, String check) throws Exception {
+
 		String sql = "SELECT `check` FROM `Information` WHERE `uid`=? ";
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.setString(1, uid);
-		ResultSet sqlres = pre.executeQuery(); 
-		String res=null;
+		ResultSet sqlres = pre.executeQuery();
+		String res = null;
 		while (sqlres.next()) {
-			res=sqlres.getString("check");
+			res = sqlres.getString("check");
 			break;
 		}
-		if(res==null) return false;
-		else if(res.equals(check))return true;
-		else return false;
+		if (res == null)
+			return false;
+		else if (res.equals(check))
+			return true;
+		else
+			return false;
 	}
-	
+
 	public int Hardware_GetUID(String category) throws Exception {
-		String res=null;
+		String res = null;
 		String sql = "SELECT uid FROM Information WHERE category=? ORDER BY uid DESC;";
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.setString(1, category);
-		ResultSet sqlres = pre.executeQuery(); 
-		
+		ResultSet sqlres = pre.executeQuery();
+
 		while (sqlres.next()) {
-			res=sqlres.getString("UID");
+			res = sqlres.getString("UID");
 			break;
 		}
-		if(res==null)
-		{
-			res=category+"000";
+		if (res == null) {
+			res = category + "000";
 		}
-		
-		return Integer.parseInt(res)+1;
+
+		return Integer.parseInt(res) + 1;
 	}
-	
+
 	public String Hardware_GetSta(String uid) throws Exception {
-		String res=null;
+		String res = null;
 		String sql = "SELECT status FROM Information WHERE UID=?;";
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.setString(1, uid);
-		ResultSet sqlres = pre.executeQuery(); 
-		
+		ResultSet sqlres = pre.executeQuery();
+
 		while (sqlres.next()) {
-			res=sqlres.getString("status");
+			res = sqlres.getString("status");
 			break;
 		}
 
-		
 		return res;
 	}
-	
-	
+
 	public void Hardware_CSta(String UID, String status) throws Exception {
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
@@ -120,7 +132,7 @@ public class Hardware {
 		pre.setString(2, UID);
 		pre.execute();
 	}
-	
+
 	public void Hardware_SetNormal() throws Exception {
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
@@ -128,8 +140,7 @@ public class Hardware {
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.execute();
 	}
-	
-	
+
 	public int Hardware_Sum() throws Exception {
 		String sql = "select count(*)sum from Information where `status`=1 OR `status`=2 OR `status`=3;";
 		DBConnection connection = new DBConnection();
@@ -138,11 +149,11 @@ public class Hardware {
 		ResultSet sqlres = st.executeQuery(sql);
 		while (sqlres.next()) {
 			return (sqlres.getInt("sum"));
-			
+
 		}
 		return 0;
 	}
-	
+
 	public List<Hardware_Model> Hardware_Sel() throws Exception {
 		String sql = "select * from Information;";
 		DBConnection connection = new DBConnection();
@@ -161,6 +172,7 @@ public class Hardware {
 		}
 		return ress;
 	}
+/*
 	public List<Hardware_Model> Hardware_Warn() throws Exception {
 		String sql = "select `UID`,`name` from Information where `status`=3;";
 		DBConnection connection = new DBConnection();
@@ -177,5 +189,5 @@ public class Hardware {
 		}
 		return ress;
 	}
-
+*/
 }

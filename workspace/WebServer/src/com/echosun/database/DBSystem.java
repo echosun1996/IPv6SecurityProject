@@ -1,5 +1,12 @@
 package com.echosun.database;
 
+/*
+ * 系统设置条目类
+ * System_Add 新建系统设置条目 传入系统设置条目模型 无返回
+ * System_Del(String key) 删除系统设置条目 传入设置项名 无返回
+ * System_Upd(String key, String value) 修改系统设置条目 传入设置项名和对应值 无返回
+ * System_Sel() 查询所有设置 无传入 返回所有设置
+ */
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -19,12 +26,12 @@ public class DBSystem {
 		pre.execute();
 	}
 
-	public void System_Del(String input) throws Exception {
+	public void System_Del(String key) throws Exception {
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
 		String sql = "delete from `System` where (`key`=?)";
 		PreparedStatement pre = con.prepareStatement(sql);
-		pre.setString(1, input);
+		pre.setString(1, key);
 		pre.execute();
 	}
 

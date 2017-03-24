@@ -1,5 +1,8 @@
 package com.echosun.Filter;
 
+/*
+ * 过滤器
+ */
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -20,21 +23,18 @@ public class MyFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
+			throws IOException, ServletException {
 		HttpServletRequest request2 = (HttpServletRequest) request;
 		HttpServletResponse response2 = (HttpServletResponse) response;
 		HttpSession section = request2.getSession();
-		System.out.println("header" + request2.getHeader("Referer"));
-		System.out.println("原始路径" + request2.getRequestURI());
+		//System.out.println("header" + request2.getHeader("Referer"));
+		//System.out.println("原始路径" + request2.getRequestURI());
 		if (request2.getRequestURI().equals("/WebServer/index.jsp")) {
 			if (section.getAttribute("loginuser") != null) {
 				response2.sendRedirect("/WebServer/login_success.jsp");
-				// request2.getRequestDispatcher("login_success.jsp").forward(request,
-				// response);
 			} else {
 				filterChain.doFilter(request, response);
-				// request2.getRequestDispatcher("/WebServer/loginout.jsp").forward(request,
-				// response);
 			}
 		} else if (request2.getRequestURI().equals("/WebServer/login_success.jsp")) {
 			if (section.getAttribute("loginuser") != null) {
@@ -53,7 +53,8 @@ public class MyFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-
+		
 	}
+
 
 }

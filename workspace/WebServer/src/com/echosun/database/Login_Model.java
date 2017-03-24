@@ -1,15 +1,8 @@
 package com.echosun.database;
 
 /*
- * database&LoginUser(username password info)
- CREATE DATABASE IPV6Security;
- USE IPV6Security;
- CREATE TABLE LoginUser (username varchar(100) PRIMARY KEY,password VARCHAR(100),info varchar(100));
- GRANT ALL on IPV6Security.* to echosun;
+ * 用户模型
  */
-
-
-
 
 public class Login_Model {
 

@@ -1,0 +1,83 @@
+body{
+		padding-top:20px;
+		padding-bottom:20px;
+	}
+hr.divider{
+		margin:10px 0;
+	}
+.demo-nav{
+		background-color:#eee;
+	}
+.cus-style{
+	font-size: 1.5em;
+}
+.cus-style-footer{
+	margin: 0px;
+}
+.cus-style-table{
+	overflow-y: hidden;
+}
+.info{position: relative;margin: 0 auto;padding: 1em;background: hsla(0,0%,100%,.25) border-box;   overflow: hidden;   border-radius: .3em;   hsla(0,0%,100%,.3)inset,0 .5em 1em rgba(0, 0, 0, 0.6);text-shadow: 0 1px 1px hsla(0,0%,100%,.3);}    
+.info::before{content: '';position: absolute;top: 0; rightright: 0; bottombottom: 0; left: 0;   margin: -30px;z-index: -1;-webkit-filter: blur(20px);filter: blur(20px);}   
+
+.side-bar {
+	background-color:#eee;
+	padding:0;
+	min-height:450px;
+	max-height: 2500px;
+
+	margin-right:3%;
+}
+.cus-formcontrol{
+      width: 80%;
+     }
+     .cus-reright{
+      margin-left: 30px;
+     }
+.cus-message-state0{
+	background-color:#CDC9C9;
+
+}
+.cus-message-state1{
+	background-color:#CDC9C9;	
+}
+.cus-message-state2{
+	background-color:#E0FFFF;	
+}
+.cus-message-state3{
+	background-color:#FFBBFF;
+}
+
+
+.cus-congif-state0{
+	background-color:#CDC9C9;
+}
+.cus-congif-state1{
+	background-color:#CDC9C9;
+}
+.cus-congif-state2{
+	background-color:#E0FFFF;	
+}
+.cus-congif-state3{
+	background-color:#FFBBFF;	
+}
+
+.mainindex{
+		background:url(../img/wxb.png) no-repeat 2px 2px;
+		}
+  #goodsList {
+            padding: 0;
+            height: 400px;
+            overflow-y: scroll;
+        }
+        .fixTable thead {
+            background-color: #fff; 
+        }
+        .cus-progress{
+        	width: 80%;
+        	 float: none;  
+    display: block;  
+    margin-left: auto;  
+    margin-right: auto;
+    margin-top:30px; 
+        }

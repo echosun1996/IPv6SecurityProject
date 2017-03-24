@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/404ERROR.jsp=UTF-8
 encoding//WebContent/Frame/device_config.jsp=UTF-8
+encoding//WebContent/Frame/main.jsp=UTF-8
+encoding//WebContent/Frame/user_config.jsp=UTF-8
 encoding//WebContent/user_loading.jsp=UTF-8

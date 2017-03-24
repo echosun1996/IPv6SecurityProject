@@ -8,6 +8,8 @@ import java.net.Socket;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
+import com.echosun.database.DBSystem;
+
 /*
  * 13140端口启动tcp服务的核心。
  */
@@ -28,7 +30,14 @@ public class Connect extends HttpServlet {
 	private Thread thread;
 
 	public void init() throws ServletException {
-		System.out.println("=================初始化成功=================");
+		DBSystem dbSystem = new DBSystem();
+		try {
+			dbSystem.System_Upd("Switch", 0 + "");
+		} catch (Exception e) {
+			System.out.println("Error in init System(Switch)!");
+		}
+
+		System.out.println("=================Init Finish=================");
 	}
 
 	@Override
@@ -43,7 +52,7 @@ public class Connect extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=utf-8");	
+		response.setContentType("text/html;charset=utf-8");
 		String status = request.getParameter("status");
 		if (sta == 0 && status.equals("1")) {
 			server = new ServerSocket(13140);
@@ -69,8 +78,6 @@ public class Connect extends HttpServlet {
 		};
 		response.setCharacterEncoding("utf-8");
 
-
-		
 		PrintWriter out = response.getWriter();
 		if (status.equals("1")) {
 			out.print("{\"sta\": 1,\"Switch\": 1}");

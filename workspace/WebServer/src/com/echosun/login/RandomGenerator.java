@@ -1,5 +1,8 @@
 package com.echosun.login;
-
+/*
+ * 随机字符串生成类
+ * 
+ */
 import java.util.Random;
 
 public class RandomGenerator {
