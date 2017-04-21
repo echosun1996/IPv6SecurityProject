@@ -24,6 +24,7 @@ public class Login {
 		pre.setString(2, input.getPassword());
 		pre.setString(3, input.getInfo());
 		pre.execute();
+		con.close();
 	}
 
 	public void Login_Del(String username) throws Exception {
@@ -33,6 +34,7 @@ public class Login {
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.setString(1, username);
 		pre.execute();
+		con.close();
 	}
 
 	public void Login_Upd(String password, String username) throws Exception {
@@ -43,6 +45,7 @@ public class Login {
 		pre.setString(1, username);
 		pre.setString(2, password);
 		pre.execute();
+		con.close();
 	}
 
 	public List<Login_Model> Login_Sel() throws Exception {
@@ -60,7 +63,7 @@ public class Login {
 			res.setPassword(sqlres.getString("password"));
 			ress.add(res);
 		}
-
+		con.close();
 		return ress;
 	}
 

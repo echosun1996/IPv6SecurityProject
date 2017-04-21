@@ -45,8 +45,7 @@
 			return false;
 		} else {
 			var salt="f-5_srr-5_shLy*l6,^yL5_sr|RV}{xuoDDJJJH@4xvx--5_ewuoDDJJJ|Rew/Ls-5_sBH@Fj,u<|R@";
-			oldpasswd.value =hex_sha1(hex_sha1(oldpasswd.value+salt)+"<%=random.getRandomString()%>
-	");
+			oldpasswd.value =hex_sha1(hex_sha1(oldpasswd.value+salt)+"<%=random.getRandomString()%>");
 			passwd.value = hex_sha1(passwd.value + salt);
 			return true;
 		}
@@ -71,25 +70,24 @@
 		<div class="row">
 			<div class="span2  col-xs-12 col-sm-3 col-md-2">
 				<ul class="nav nav-pills nav-stacked demo-nav side-bar">
-					<li><a href="main.jsp" target="main"><span
+					<li><a href="main.jsp"><span
 							class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;
 							面板首页</a></li>
-					<li><a href="device_config.jsp" target="main"
-						id="device_config"><span class="glyphicon glyphicon-cog"
-							aria-hidden="true"></span>&nbsp; 设备设置</a></li>
-					<li><a href="device_message.jsp" target="main"
-						id="device_message"><span class="glyphicon glyphicon-envelope"
-							aria-hidden="true"></span>&nbsp; 设备消息 </a></li>
-					<li><a href="ACSInformation.jsp" target="main"
-						id="ACSInformation"><span class="glyphicon glyphicon-wrench"
-							aria-hidden="true"></span>&nbsp; 门禁设置</a></li>
+					<li><a href="device_config.jsp" id="device_config"><span
+							class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;
+							设备设置</a></li>
+					<li><a href="device_message.jsp" id="device_message"><span
+							class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;
+							设备消息 </a></li>
+					<li><a href="ACSInformation.jsp" id="ACSInformation"><span
+							class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp;
+							门禁设置</a></li>
 
-					<li class="active"><a href="user_config.jsp" target="main"
-						id="user_config"><span class="glyphicon glyphicon-user"></span>&nbsp;
-							用户设置</a></li>
+					<li class="active"><a href="user_config.jsp" id="user_config"><span
+							class="glyphicon glyphicon-user"></span>&nbsp; 用户设置</a></li>
 					<li><a href="/WebServer/loginout.jsp" id="loginout"><span
 							class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;
-							用户登出</a></li>
+							退出登录</a></li>
 				</ul>
 			</div>
 

@@ -30,10 +30,11 @@ public class Hardware {
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.setString(1, uid);
 		pre.execute();
+		con.close();
 	}
 
 	public int Hardware_Init(Hardware_Model in) {
-		String sql = "INSERT INTO `Information` (`UID` ,`name`,`category`,`status`,`address` ,`check`)VALUES (?,?,?,?,?,?)";
+		String sql = "INSERT INTO `Information` (`UID` ,`name`,`category`,`status`,`address` ,`check`,`IbeaconID`)VALUES (?,?,?,?,?,?,?)";
 		DBConnection connection = new DBConnection();
 		Connection con;
 		try {
@@ -45,14 +46,14 @@ public class Hardware {
 			pre.setInt(4, in.getStatus());
 			pre.setString(5, in.getAddress());
 			pre.setString(6, in.getCheck());
+			pre.setString(7, in.getIbeaconID());
 			pre.execute();
+			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
 		}
-
 		return 1;
-
 	}
 
 	public boolean Hardware_check(String uid, String check) throws Exception {
@@ -68,6 +69,7 @@ public class Hardware {
 			res = sqlres.getString("check");
 			break;
 		}
+		con.close();
 		if (res == null)
 			return false;
 		else if (res.equals(check))
@@ -92,7 +94,7 @@ public class Hardware {
 		if (res == null) {
 			res = category + "000";
 		}
-
+		con.close();
 		return Integer.parseInt(res) + 1;
 	}
 
@@ -104,12 +106,11 @@ public class Hardware {
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.setString(1, uid);
 		ResultSet sqlres = pre.executeQuery();
-
 		while (sqlres.next()) {
 			res = sqlres.getString("status");
 			break;
 		}
-
+		con.close();
 		return res;
 	}
 
@@ -121,6 +122,7 @@ public class Hardware {
 		pre.setString(1, status);
 		pre.setString(2, UID);
 		pre.execute();
+		con.close();
 	}
 
 	public void Hardware_CName(String UID, String name) throws Exception {
@@ -131,6 +133,7 @@ public class Hardware {
 		pre.setString(1, name);
 		pre.setString(2, UID);
 		pre.execute();
+		con.close();
 	}
 
 	public void Hardware_SetNormal() throws Exception {
@@ -139,19 +142,21 @@ public class Hardware {
 		String sql = "UPDATE `Information` SET `status`=2 WHERE `status`=3;";
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.execute();
+		con.close();
 	}
 
 	public int Hardware_Sum() throws Exception {
+		int ret=-1;
 		String sql = "select count(*)sum from Information where `status`=1 OR `status`=2 OR `status`=3;";
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
 		Statement st = (Statement) con.createStatement();
 		ResultSet sqlres = st.executeQuery(sql);
 		while (sqlres.next()) {
-			return (sqlres.getInt("sum"));
-
+			ret = sqlres.getInt("sum");
 		}
-		return 0;
+		con.close();
+		return ret;
 	}
 
 	public List<Hardware_Model> Hardware_Sel() throws Exception {
@@ -170,9 +175,10 @@ public class Hardware {
 			res.setStatus(sqlres.getInt("status"));
 			ress.add(res);
 		}
+		con.close();
 		return ress;
 	}
-/*
+
 	public List<Hardware_Model> Hardware_Warn() throws Exception {
 		String sql = "select `UID`,`name` from Information where `status`=3;";
 		DBConnection connection = new DBConnection();
@@ -189,5 +195,5 @@ public class Hardware {
 		}
 		return ress;
 	}
-*/
+
 }

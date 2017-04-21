@@ -10,6 +10,15 @@ public class Hardware_Model {
 	private String address;
 	private int category;
 	private int status;
+	private String IbeaconID;
+
+	public String getIbeaconID() {
+		return IbeaconID;
+	}
+
+	public void setIbeaconID(String ibeaconID) {
+		IbeaconID = ibeaconID;
+	}
 
 	public String getCheck() {
 		return check;

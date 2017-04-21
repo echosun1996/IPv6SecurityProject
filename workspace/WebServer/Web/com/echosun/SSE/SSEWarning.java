@@ -24,7 +24,7 @@ public class SSEWarning extends HttpServlet {
 		List<Hardware_Model> res = null;
 		Hardware message = new Hardware();
 		try {
-			res = message.Hardware_Sel();
+			res = message.Hardware_Warn();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}

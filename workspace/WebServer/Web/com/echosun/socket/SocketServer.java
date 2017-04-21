@@ -46,9 +46,11 @@ class SocketServer extends Thread {
 				 
 				pw.flush();
 				br.close();
-				System.out.println("客户端:" + info + "\r\n");
+				System.out.println("客户端:" + info);
+				System.out.println("服务器："+analyze.getReturnString());
 			}
 		} catch (Exception e) {
 		}
 	}
 }
+//1#1000#1#00000000-0000-0000-0000-000000000001#0

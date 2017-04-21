@@ -30,6 +30,7 @@ public class ACSInformation {
 			res = sqlres.getInt("status");
 			break;
 		}
+		con.close();
 		return res;
 	}
 
@@ -55,6 +56,7 @@ public class ACSInformation {
 		pre.setInt(1, res);
 		pre.setString(2, id);
 		pre.execute();
+		con.close();
 		return res;
 	}
 
@@ -66,6 +68,7 @@ public class ACSInformation {
 		pre.setString(1, name);
 		pre.setString(2, id);
 		pre.execute();
+		con.close();
 	}
 
 	public int ACSInformation_Init(ACSInformation_Model in) {
@@ -80,11 +83,12 @@ public class ACSInformation {
 			pre.setString(3, in.getTime());
 			pre.setString(4, in.getName());
 			pre.execute();
+			con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
 		}
-
+		
 		return 1;
 
 	}
@@ -107,8 +111,27 @@ public class ACSInformation {
 			res.setTime(sqlres.getString("time"));
 			ress.add(res);
 		}
-
+		con.close();
 		return ress;
+	}
+	
+	public int ACSInformation_CSta(String id,String sta) {
+		String sql = "UPDATE `ACSInformation` SET `status`=? WHERE (`ID`=?)";
+		DBConnection connection = new DBConnection();
+		Connection con;
+		try {
+			con = connection.getConnection();
+			PreparedStatement pre = con.prepareStatement(sql);
+			pre.setString(1, sta);
+			pre.setString(2, id);
+			pre.execute();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+		return 1;
+
 	}
 
 }

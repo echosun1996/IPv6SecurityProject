@@ -24,6 +24,7 @@ public class DBSystem {
 		pre.setString(1, input.getKey());
 		pre.setString(2, input.getValue());
 		pre.execute();
+		con.close();
 	}
 
 	public void System_Del(String key) throws Exception {
@@ -33,6 +34,7 @@ public class DBSystem {
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.setString(1, key);
 		pre.execute();
+		con.close();
 	}
 
 	public void System_Upd(String key, String value) throws Exception {
@@ -43,6 +45,7 @@ public class DBSystem {
 		pre.setString(1, value);
 		pre.setString(2, key);
 		pre.execute();
+		con.close();
 	}
 
 	public List<DBSystem_Model> System_Sel() throws Exception {
@@ -60,6 +63,7 @@ public class DBSystem {
 			res.setValue(sqlres.getString("value"));
 			ress.add(res);
 		}
+		con.close();
 		return ress;
 	}
 

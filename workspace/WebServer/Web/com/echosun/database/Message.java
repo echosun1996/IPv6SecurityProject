@@ -28,6 +28,7 @@ public class Message {
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.setString(1, UID);
 		pre.execute();
+		con.close();
 	}
 
 	public void Message_Init(String UID, String msg, int status) throws Exception {
@@ -44,6 +45,7 @@ public class Message {
 		pre.setString(3, msg);
 		pre.setInt(4, status);
 		pre.execute();
+		con.close();
 	}
 
 	public void Message_SetNormal() throws Exception {
@@ -52,6 +54,7 @@ public class Message {
 		String sql = "UPDATE `Message` SET `status`=0 WHERE `status`=3 OR `status`=2;";
 		PreparedStatement pre = con.prepareStatement(sql);
 		pre.execute();
+		con.close();
 	}
 
 	public void Message_CMessage(String UID, String newmsg) throws Exception {
@@ -62,6 +65,7 @@ public class Message {
 		pre.setString(1, newmsg);
 		pre.setString(2, UID);
 		pre.execute();
+		con.close();
 	}
 
 	public List<Message_Model> Message_SelALL() throws Exception {
@@ -82,7 +86,7 @@ public class Message {
 			res.setTime(sqlres.getString("time"));
 			ress.add(res);
 		}
-
+		con.close();
 		return ress;
 	}
 
@@ -104,7 +108,7 @@ public class Message {
 			res.setTime(sqlres.getString("time"));
 			ress.add(res);
 		}
-
+		con.close();
 		return ress;
 	}
 

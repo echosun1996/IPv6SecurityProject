@@ -16,11 +16,12 @@ import com.echosun.login.RandomGenerator;
 public class String_analyze {
 	private String cmd;
 	private String returnString = null;
-	private int back;// 1 hava
+	private int back;// 1 要求回传
 	static final int ok = 1;
 	static final int error = 0;
 	private String ip;
 	private int category;
+	private String IbeaconID;
 
 	public String_analyze(String ip, String input) {
 		this.ip = ip;
@@ -28,7 +29,7 @@ public class String_analyze {
 		back = 0;
 	}
 
-	// return
+	// 返回字符串
 	public String getReturnString() {
 		if (back == 1)
 			return returnString;
@@ -36,13 +37,12 @@ public class String_analyze {
 			return null;
 	}
 
-	//
 	private String hard_init(String category_tem) throws Exception {
 		Hardware test = new Hardware();
 		String uid = test.Hardware_GetUID(category_tem) + "";
 		RandomGenerator alphaNumericGenerator = new RandomGenerator();
 		alphaNumericGenerator.RandomCheckPasswd();
-		String check = alphaNumericGenerator.getRandomString();// 5
+		String check = alphaNumericGenerator.getRandomString();//5位校验码
 
 		Hardware_Model in = new Hardware_Model();
 		in.setUID(uid);
@@ -51,34 +51,37 @@ public class String_analyze {
 		in.setStatus(1);
 		in.setAddress(ip);
 		in.setCheck(check);
+		in.setIbeaconID(IbeaconID);
 
 		Hardware hardware = new Hardware();
 		hardware.Hardware_Init(in);
 		return uid + "#" + check;
 	}
-
-	// 主函数
+	
+	// 主功能函数
 	public int hard_mainfun() throws Exception {
-		// System.out.println(cmd);
 		String[] resStringx = cmd.split("#");
+		
+		System.out.println("Ibeacon"+resStringx[3]);
 
-		// 分段
+		// 数据分段
 		if (resStringx.length != 5) {
 			System.out.println("split error!");
 			return error;
 		}
 
-		// 回传确认
+		// 回传0/1校验
 		if (!("0".equals(resStringx[0]) || "1".equals(resStringx[0]))) {
 			System.out.println("back error!");
 			return error;
 		}
 
-		// uid确认
+		// uid长度校验
 		if (resStringx[1].length() != 4) {
 			System.out.println("uid length error!");
 			return error;
 		}
+		
 
 		back = resStringx[0].charAt(0) - '0';
 		int uid = Integer.parseInt(resStringx[1]);
@@ -87,16 +90,11 @@ public class String_analyze {
 		String msg = resStringx[3];
 		String check = resStringx[4];
 
-		// System.out.println("back:" + back);
-		// System.out.println("uid:" + uid);
-		// System.out.println("category:" + category);
-		// System.out.println("status:" + status);
-		// System.out.println("msg:" + msg);
-		// System.out.println("check:" + check);
 
 		Hardware hard_db = new Hardware();
 		// 初始化
 		if (status == 1 && category > 0) {
+			IbeaconID=resStringx[3];
 			returnString = hard_init(category + "");
 			return ok;
 		}
