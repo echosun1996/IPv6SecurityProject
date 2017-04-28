@@ -30,6 +30,7 @@ public class ACSDao {
 				jsonObject.put("infomation" + i, infomation);
 				i++;
 			}
+			jsonObject.put("amounts", i - 1);
 			stmt.close();
 			conn.close();
 
@@ -37,5 +38,44 @@ public class ACSDao {
 			e.printStackTrace();
 		}
 		return jsonObject;
+	}
+
+	public int reset(String ID, int status) {
+		try {
+			MySqlStatus connection = new MySqlStatus();
+			Connection con = connection.getConnection();
+			String sql = "UPDATE `ACSInformation` SET `status`=" + status + " WHERE (`ID`=?)";
+			PreparedStatement pre = con.prepareStatement(sql);
+			pre.setString(1, ID);
+			int ret = pre.executeUpdate();
+			if (ret == 0)
+				System.out.println("update failed!");
+			con.close();
+			return ret;
+		} catch (Exception e) {
+			System.out.println("Updatename Error!");
+		}
+		return 0;
+
+	}
+
+	public int rename(String ID, String name) {
+		try {
+			MySqlStatus connection = new MySqlStatus();
+			Connection con = connection.getConnection();
+			String sql = "UPDATE `ACSInformation` SET `name`=? WHERE (`ID`=?)";
+			PreparedStatement pre = con.prepareStatement(sql);
+			pre.setString(1, name);
+			pre.setString(2, ID);
+			int ret = pre.executeUpdate();
+			if (ret == 0)
+				System.out.println("update failed!");
+			con.close();
+			return ret;
+		} catch (Exception e) {
+			System.out.println("Updatename Error!");
+		}
+		return 0;
+
 	}
 }

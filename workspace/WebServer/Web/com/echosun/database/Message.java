@@ -68,6 +68,22 @@ public class Message {
 		con.close();
 	}
 
+	public List<Message_Model> Message_AfterSelALL(int page) throws Exception {
+		List<Message_Model> temp = Message_SelALL();
+		int pageSum = (temp.size() % 8 == 0) ? (temp.size() / 8) : (temp.size() / 8 + 1);
+		if (page > pageSum)
+			return null;
+
+		List<Message_Model> ret = new ArrayList<Message_Model>();
+
+		for (int i = page * 8 - 8; i < page * 8 && i < temp.size(); i++) {
+			ret.add(temp.get(i));
+		}
+		for (int i = 0; i < ret.size(); i++)
+			System.out.println(ret.get(i).getUID());
+		return ret;
+	}
+
 	public List<Message_Model> Message_SelALL() throws Exception {
 
 		String sql = "select `uid`,`status`,`message`,`time`  from Message;";

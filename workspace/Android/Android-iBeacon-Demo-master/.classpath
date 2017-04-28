@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="iBeacon-Demo/android-ibeacon-reference/gen"/>
+	<classpathentry kind="src" path="iBeacon-Demo/android-ibeacon-reference/src"/>
+	<classpathentry kind="src" path="iBeacon-Demo/android-ibeacon-service/gen"/>
+	<classpathentry kind="src" path="iBeacon-Demo/android-ibeacon-service/src"/>
+	<classpathentry kind="lib" path="iBeacon-Demo/android-ibeacon-reference/bin/dexedLibs/android-ibeacon-service-e50ef8892615f46d61a917c35657e3c4.jar"/>
+	<classpathentry kind="lib" path="iBeacon-Demo/android-ibeacon-reference/bin/dexedLibs/android-support-v4-796a7c5215c706d66cb9879a491b8053.jar"/>
+	<classpathentry kind="lib" path="iBeacon-Demo/android-ibeacon-reference/bin/dexedLibs/commons-codec-1.10-175be8cee4998fc08076e67e84cc8f3b.jar"/>
+	<classpathentry kind="lib" path="iBeacon-Demo/android-ibeacon-reference/bin/dexedLibs/json-2ba63ffd2d9bad40cfc2728d29066baa.jar"/>
+	<classpathentry kind="lib" path="iBeacon-Demo/android-ibeacon-reference/bin/dexedLibs/volley-a1f2b400d41237cfc573196298447a69.jar"/>
+	<classpathentry kind="lib" path="iBeacon-Demo/android-ibeacon-reference/libs/android-support-v4.jar"/>
+	<classpathentry kind="lib" path="iBeacon-Demo/android-ibeacon-reference/libs/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="iBeacon-Demo/android-ibeacon-reference/libs/json.jar"/>
+	<classpathentry kind="lib" path="iBeacon-Demo/android-ibeacon-reference/libs/volley.jar"/>
+	<classpathentry kind="lib" path="iBeacon-Demo/android-ibeacon-service/bin/android-ibeacon-service.jar"/>
+	<classpathentry kind="lib" path="iBeacon-Demo/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="iBeacon-Demo/android-ibeacon-reference/bin/classes"/>
+</classpath>

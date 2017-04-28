@@ -252,6 +252,7 @@
 								</tbody>
 							</table>
 						</div>
+						<br>
 						<button type="button" id="clear_message"
 							class="btn btn-primary pull-right">消息清空</button>
 

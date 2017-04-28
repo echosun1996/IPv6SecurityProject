@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>主窗体</title>
+<title>系统自检</title>
 <link rel="icon" href="/WebServer/Files/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="/WebServer/Files/favicon.ico"
 	type="image/x-icon" />
@@ -34,9 +34,13 @@
 		}
 	}
 	function load() {
-		setTimeout("check()", 200);
+		setTimeout("check()", 300);
 	}
 </script>
+    <% response.setHeader("Pragma", "No-cache");  
+    response.setHeader("Cache-Control", "no-cache");  
+    response.setHeader("Cache-Control", "must-revalidate");  
+    response.setDateHeader("Expires",0); %>  
 </head>
 <body onload="load()">
 	<div class="container-fluid">
@@ -92,12 +96,11 @@
 
 
 
-
-
-
 				<br>
 				<p id="info">
-					<b>系统自检，请稍候……</b>
+					<b style="font-size:20px" >系统自检，请稍候……</b>
+					<br>
+					<a href="/WebServer/Frame/console.jsp">(长时间无响应请单击这里)</a>
 				</p>
 
 

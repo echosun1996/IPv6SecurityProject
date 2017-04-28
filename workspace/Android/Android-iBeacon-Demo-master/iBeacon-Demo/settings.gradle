@@ -1,0 +1,2 @@
+include ':android-ibeacon-service'
+include ':android-ibeacon-reference'

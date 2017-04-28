@@ -143,7 +143,6 @@ $('#<%=i.getID()%>').on({
 	}
 });
 </script>
-
 								<td><%=i.getTime()%></td>
 							</tr>
 							<%

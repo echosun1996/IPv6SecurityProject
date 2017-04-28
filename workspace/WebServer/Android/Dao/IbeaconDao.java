@@ -14,7 +14,8 @@ public class IbeaconDao {
 			PreparedStatement pre = con.prepareStatement(sql);
 			pre.setString(1, UID);
 			int ret = pre.executeUpdate();
-			if(ret==0)System.out.println("update failed!");
+			if (ret == 0)
+				System.out.println("update failed!");
 			con.close();
 			return ret;
 		} catch (Exception e) {
@@ -32,7 +33,8 @@ public class IbeaconDao {
 			pre.setString(1, name);
 			pre.setString(2, UID);
 			int ret = pre.executeUpdate();
-			if(ret==0)System.out.println("update failed!");
+			if (ret == 0)
+				System.out.println("update failed!");
 			con.close();
 			return ret;
 		} catch (Exception e) {

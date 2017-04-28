@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="360dp"
+    android:layout_height="240dp"
+    android:orientation="vertical"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@drawable/dialog">>
+  
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_weight="1" 
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:focusable="true"  
+        android:focusableInTouchMode="true">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="right"
+            android:inputType="textPersonName"
+            android:text="名字   "
+            android:ems="8"
+            android:focusable="false"
+            android:background="#00000000"
+            android:layout_weight="1" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:id="@+id/acs_name"
+            android:ems="12"
+            android:background="#00000000"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+   <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_weight="1" 
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+       <EditText
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center"
+           android:gravity="right"
+           android:inputType="textPersonName"
+           android:text="类别  "
+           android:ems="8"
+           android:focusable="false"
+           android:background="#00000000"
+           android:layout_weight="1" />
+       <EditText
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       android:gravity="center"
+       android:inputType="textPersonName"
+       android:id="@+id/acs_category"
+       android:ems="12"
+       android:background="#00000000"
+       android:layout_weight="1" />
+   </LinearLayout>
+    <LinearLayout 
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_weight="1" 
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="right"
+        android:inputType="textPersonName"
+        android:text="状态  "
+        android:ems="8"
+        android:focusable="false"
+        android:background="#00000000"
+        android:layout_weight="1" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:id="@+id/acs_status"
+        android:ems="12"
+        android:focusable="false"
+        android:background="#00000000"
+        android:layout_weight="1" />
+       
+    </LinearLayout>
+    
+    <Button
+        android:text="复位"
+        android:layout_width="180dp"
+        android:layout_height="45dp"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:textColor="@color/floralwhite"
+        android:background="@drawable/button_selector"
+        android:id="@+id/acs_button" />
+</LinearLayout>
+

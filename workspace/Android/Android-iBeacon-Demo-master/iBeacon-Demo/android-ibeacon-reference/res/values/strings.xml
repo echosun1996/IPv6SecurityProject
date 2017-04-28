@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="app_name">极安家庭安防</string>
+    <string name="title_activity_login">Login</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_information_fragment">InformationFragment</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_welcom">WelcomeActivity</string>
+    <string name="title_activity_head_picture">HeadPicture</string>
+</resources>

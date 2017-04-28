@@ -146,7 +146,7 @@ public class Hardware {
 	}
 
 	public int Hardware_Sum() throws Exception {
-		int ret=-1;
+		int ret = -1;
 		String sql = "select count(*)sum from Information where `status`=1 OR `status`=2 OR `status`=3;";
 		DBConnection connection = new DBConnection();
 		Connection con = connection.getConnection();
@@ -156,6 +156,22 @@ public class Hardware {
 			ret = sqlres.getInt("sum");
 		}
 		con.close();
+		return ret;
+	}
+
+	public List<Hardware_Model> Hardware_AfterSel(int page) throws Exception {
+		List<Hardware_Model> temp = Hardware_Sel();
+		int pageSum = (temp.size() % 6 == 0) ? (temp.size() / 6) : (temp.size() / 6 + 1);
+		if (page > pageSum)
+			return null;
+
+		List<Hardware_Model> ret = new ArrayList<Hardware_Model>();
+
+		for (int i = page * 6 - 6; i < page * 6 && i < temp.size(); i++) {
+			ret.add(temp.get(i));
+		}
+		for (int i = 0; i < ret.size(); i++)
+			System.out.println(ret.get(i).getUID());
 		return ret;
 	}
 
@@ -195,5 +211,6 @@ public class Hardware {
 		}
 		return ress;
 	}
+
 
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000"
+    android:orientation="horizontal" >
+
+   
+    <TextView
+        android:id="@+id/e_text1"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:background="#00000000"
+        android:textColor="#000000"
+        android:textSize="13dp" />
+
+    <EditText
+        android:id="@+id/e_text2"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:background="#00000000"
+        android:textColor="#000000"
+        android:textSize="13dp" />
+
+  
+
+    <Switch
+        android:id="@+id/e_btn3"
+        android:enabled="true"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="0dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="50dp"
+        android:textOn="开"
+        android:textOff="关"
+        android:background="#00000000"
+        android:thumb="@drawable/switch_bg"
+	    android:track="@drawable/track_bg"
+         />
+
+
+   <!--singleLine如果和layout_width一起使用，当文本不能全部显示时，后面用“…”来表示,如果不设置singleLine或者设置为false，文本将自动换行-->
+    <TextView
+        android:id="@+id/e_text4"
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="10dp"
+        android:background="#00000000"
+        android:textColor="#000000"
+        android:textSize="13dp" />
+
+
+</LinearLayout>

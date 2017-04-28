@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+    xmlns:tools="http://schemas.android.com/tools"  
+    xmlns:imagecontrol="http://schemas.android.com/apk/res-auto"  
+    android:layout_width="fill_parent"  
+    android:layout_height="fill_parent"  
+    android:orientation="vertical"  
+    >  
+  
+    <!-- 没有指定圆形ImageView属性时，默认没有外边圆颜色 -->  
+    <!-- 需要将图片资源自定为src ，或在程序中setImageResource(res) 不能设置background为图片，这样不能达到圆形效果-->
+    <!-- border_outside_color 外部圆圈的颜色 -->  
+    <!-- border_inside_color 内部部圆圈的颜色 -->  
+    <!-- border_thickness 外圆和内圆的宽度 -->
+    <LinearLayout 
+        android:layout_width="fill_parent"  
+        android:layout_height="10dp"  
+        android:orientation="vertical">
+        
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="fill_parent"  
+        android:layout_height="100dp"  
+        android:orientation="vertical"
+        android:gravity="center">
+           <com.radiusnetworks.ibeaconreference.RoundImageView
+                android:id="@+id/roundImageView"
+		        android:layout_width="100dp"
+		        android:layout_height="100dp"
+		        android:src="@drawable/headpic"
+		        imagecontrol:border_inside_color="#FF7397A3"
+		        imagecontrol:border_outside_color="#FF7397A3"
+		        imagecontrol:border_thickness="1dp" />
+        
+    </LinearLayout>
+       <LinearLayout 
+        android:layout_width="fill_parent"  
+        android:layout_height="20dp"  
+        android:orientation="vertical">
+        
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/starIB"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="用户定位" />
+  
+</LinearLayout>  

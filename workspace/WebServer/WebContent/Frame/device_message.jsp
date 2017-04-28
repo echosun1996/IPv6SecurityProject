@@ -68,8 +68,7 @@
 			<div class="col-xs-12 col-sm-9 col-md-10">
 				<h2 class="text-center">设备消息</h2>
 
-				<div style="overflow-x: auto; overflow-y: auto; height: 380px;"
-					class="table-responsive">
+				<div class="table-responsive">
 					<table class="table table-bordered" id="table">
 
 
@@ -84,8 +83,21 @@
 						<tbody>
 
 							<%
+								int pageNow = 1;
+								int pageSum = 0;
+								String s_pageNow = request.getParameter("page");
+								if (s_pageNow != null) {
+									//接收到了pageNow
+									try {
+										pageNow = Integer.parseInt(s_pageNow);
+									} catch (Exception e) {
+									}
+								}
+
 								try {
-									List<Message_Model> res = infos.Message_SelALL();
+									List<Message_Model> res = infos.Message_AfterSelALL(pageNow);
+									List<Message_Model> ress = infos.Message_SelALL();
+									pageSum = (ress.size() % 8 == 0) ? (ress.size() / 8) : (ress.size() / 8 + 1);
 									for (Message_Model i : res) {
 							%>
 							<tr class="cus-message-state<%=i.getStatus()%>">
@@ -104,7 +116,16 @@
 						</tbody>
 					</table>
 
-
+					<%
+						out.print("您当前在" + pageNow + "页	");
+						out.print("	共" + pageSum + "页");
+					%>
+					<div class="pull-right">
+						<a href="device_message.jsp?page=<%=pageNow + 1%>">下一页</a> <a
+							href="device_message.jsp?page=<%=pageNow - 1%>">上一页</a> <a
+							href="device_message.jsp?page=<%=pageSum%>">尾页</a> <a
+							href="device_message.jsp?page=1">首页</a>
+					</div>
 
 
 

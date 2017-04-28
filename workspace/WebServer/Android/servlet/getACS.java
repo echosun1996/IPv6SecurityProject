@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dao.ACSDao;
-import Dao.MessageDao;
 
 /**
  * Servlet implementation class getMessage
@@ -39,7 +38,7 @@ public class getACS extends HttpServlet {
 		
 		UID = request.getParameter("UID");
 		System.out.println(UID);
-		PrintWriter p=response.getWriter();
+		PrintWriter p=response.getWriter();	
 		p.print(acsDao.getACS(UID));
 	}
 
