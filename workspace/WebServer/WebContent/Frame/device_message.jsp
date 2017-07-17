@@ -97,6 +97,7 @@
 								try {
 									List<Message_Model> res = infos.Message_AfterSelALL(pageNow);
 									List<Message_Model> ress = infos.Message_SelALL();
+									if(res==null||ress==null)return;
 									pageSum = (ress.size() % 8 == 0) ? (ress.size() / 8) : (ress.size() / 8 + 1);
 									for (Message_Model i : res) {
 							%>

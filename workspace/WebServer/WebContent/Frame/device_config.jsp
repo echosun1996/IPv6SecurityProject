@@ -92,6 +92,7 @@
 								try {
 									List<Hardware_Model> res = infos.Hardware_AfterSel(pageNow);
 									List<Hardware_Model> ress = infos.Hardware_Sel();
+									if(res==null||ress==null)return;
 									pageSum = (ress.size() % 6 == 0) ? (ress.size() / 6) : (ress.size() / 6 + 1);
 
 									for (Hardware_Model i : res) {

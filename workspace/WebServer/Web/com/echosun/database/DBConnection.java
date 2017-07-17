@@ -8,7 +8,7 @@ import com.mysql.jdbc.Connection;
  * getConnection() 返回Connection型连接
  */
 public class DBConnection {
-	static String URL = "jdbc:mysql://10.30.19.164:3306/IPV6Security?characterEncoding=utf8&useSSL=true";
+	static String URL = "jdbc:mysql://127.0.0.1:3306/IPV6Security?characterEncoding=utf8&useSSL=true";
 	static String USERNAME = "IPV6SecurityWeb";
 	static String PASSWORD = "==test!!test==";
 	private Connection con = null;
